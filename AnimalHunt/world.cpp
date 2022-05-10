@@ -101,6 +101,10 @@ void World::SendDirection(string direction) {
 	player->Go(direction);
 }
 
+void World::RecoverHP() {
+	player->RecoverHP();
+}
+
 bool World::SendItemToTake(string item, string subitem) {
 	return player->Take(item, subitem);
 }

@@ -25,6 +25,8 @@ public:
 	void SendLootTarget(string targetName);
 	void SendPlaceToLook(string placeToLook);
 	void SendTargetToAttack(string target);
+
+	void RecoverHP();
 	void ShowStats();
 	bool PlayerIsAlive();
 	void ShowInventory();

@@ -127,6 +127,9 @@ int main() {
 			cin >> parent;
 			world.SendItemToDrop(parent, item);
 		}
+		else if (command == "swim") {
+			world.RecoverHP();
+		}
 		else if (command == "inventory") {
 			world.ShowInventory();
 		}

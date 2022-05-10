@@ -21,6 +21,8 @@ public:
 	bool Examine(const string targetName) const;
 	bool Attack(const string targetName);
 	bool Loot(const string targetName);
+	void RecoverHP();
+
 
 public:
 

@@ -27,6 +27,16 @@ void Player::Look(const string placeToLook) const {
 	}
 }
 
+void Player::RecoverHP(){
+	if (parent->name == "Fountain") {
+		for (int i = hit_points; i < 25; ++i) {
+			hit_points = i+1;
+			cout << "The water from the magic fountain is healing your wounds... (" << hit_points << " HP)" << endl;
+		}
+	}
+}
+
+
 bool Player::Go(string direction) {
 	Exit* exit = GetRoom()->GetExit(direction);
 
