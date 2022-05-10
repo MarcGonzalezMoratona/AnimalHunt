@@ -27,8 +27,9 @@ There are some commands that you will need to know in order to play the game:
 - quit - Closes the game
 
 ## Ideas not finished
-- Having a store where you can buy weapons and armours and sell items to get money.
-- Make the bank debt using money.
+- Having a store where you can buy weapons and armours and sell items to earn money.
+- Use money to pay the debt to the bank.
+- Having a wallet that you can open to know how much money you have.
 - Having a church where you can pray and donate money to be more lucky (reduced prices in the store, more attack points and better weapons on the map).
 
 ## Author
