@@ -36,6 +36,10 @@ int main() {
 	cout << "Best regards," << endl;
 	cout << "John Williams. Bank of America." << endl << endl;
 
+	cout << "Press Enter to continue" << endl;
+	cin.ignore();
+	system("CLS");
+	world.sendPlaceToLook("here");
 	
 	string command = "";
 
@@ -104,6 +108,8 @@ int main() {
 		if (command != "quit") cout << endl;
 	}
 
+	system("CLS");
 	cout << "Thanks for playing!" << endl;
+
 	return 0;
 }
