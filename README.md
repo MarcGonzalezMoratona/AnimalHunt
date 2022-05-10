@@ -24,7 +24,8 @@ There are some commands that you will need to know in order to play the game:
 - examine (target) - Shows stats and objects that belong to an animal
 - loot (target) - Takes all the objects that belong to an animal
 - inventory - Shows all the objects that belong to you
-- swim - If you are on the magic fountain, yo can recover HP
+- swim - If you are on the magic fountain, you can recover HP
+- pay - If you are on the bank, you can pay the debt
 - quit - Closes the game
 
 ## Ideas not finished
