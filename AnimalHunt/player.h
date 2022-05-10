@@ -8,7 +8,7 @@ using namespace std;
 class Player : public Creature
 {
 public:
-	Player(const char* name, const char* description, Room* room);
+	Player(const string name, const char* description, Room* room);
 	~Player();
 
 	bool Go(const string direction);

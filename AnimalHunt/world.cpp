@@ -7,7 +7,7 @@
 #include "player.h"
 #include "world.h"
 
-World::World() {
+World::World(string playerName) {
 	Room* forest = new Room("Forest", "You are surrounded by tall trees. It feels like a huge forest someone could get lost easily.");
 	Room* house = new Room("House", "You are inside a beautiful but small white house.");
 	Room* store = new Room("Store", "Store.");
@@ -69,16 +69,14 @@ World::World() {
 	//entities.push_back(sword);
 	//entities.push_back(shield);
 
-	player = new Player("Hero", "You are an awesome adventurer!", house);
+	player = new Player(playerName, "You are an awesome adventurer!", house);
 	player->hit_points = 25;
 	entities.push_back(player);
 
 }
 
 World::~World() {
-	for (list<Entity*>::iterator it = entities.begin(); it != entities.end(); ++it)
-		delete *it;
-
+	for (list<Entity*>::iterator it = entities.begin(); it != entities.end(); ++it) delete *it;
 	entities.clear();
 }
 
@@ -108,4 +106,5 @@ void World::sendPlaceToLook(string placeToLook) {
 
 void World::sendTargetToAttack(string target) {
 	player->Attack(target);
+	//for (list<Entity*>::iterator it = entities.begin(); it != entities.end(); ++it) (*it)->Attack();
 }

@@ -9,7 +9,6 @@ void commandNotValid() {
 }
 
 int main() {
-	World world;
 	cout << "Welcome to Animal Hunt!" << endl << endl;
 	// TODO: UPDATE COMMANDS
 	cout << "Commands of the game:" << endl << endl;
@@ -28,6 +27,7 @@ int main() {
 	cout << "Enter your name:" << endl;
 	string name;
 	getline(cin, name);
+	World world(name);
 
 	cout << endl << "Dear " << name << "," << endl << endl;
 	cout << "I am writing to remind you that you have an outstanding debt of 50,000 rupees on your house." << endl;
@@ -101,7 +101,6 @@ int main() {
 			world.sendTargetToAttack(target);
 		}
 		else if (command != "quit") commandNotValid();
-
 		if (command != "quit") cout << endl;
 	}
 

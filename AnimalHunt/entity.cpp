@@ -1,7 +1,8 @@
 #include <iostream>
 #include "Entity.h"
+#include "Room.h"
 
-Entity::Entity(const char* name, const char* description, Entity* parent = NULL) : name(name), description(description), parent(parent) {
+Entity::Entity(const string name, const char* description, Entity* parent = NULL) : name(name), description(description), parent(parent) {
 	type = ENTITY;
 	if (parent != NULL)	parent->container.push_back(this);
 }
@@ -13,8 +14,7 @@ void Entity::Look() const {
 	cout << description << endl;
 }
 
-void Entity::ChangeParentTo(Entity* new_parent)
-{
+void Entity::ChangeParentTo(Entity* new_parent) {
 	if (parent != NULL)
 		parent->container.remove(this);
 
@@ -23,6 +23,9 @@ void Entity::ChangeParentTo(Entity* new_parent)
 	if (parent != NULL)
 		parent->container.push_back(this);
 }
+
+//void Entity::Attack() {}
+
 
 bool Entity::Find(Entity* entity) const {
 	for (list<Entity*>::const_iterator it = container.begin(); it != container.cend(); ++it) {

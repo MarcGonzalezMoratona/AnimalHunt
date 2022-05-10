@@ -22,7 +22,7 @@ public:
 	~Item();
 
 	void Look() const;
-	//int GetValue() const;
+	int GetValue() const;
 
 public:
 	int min_value;

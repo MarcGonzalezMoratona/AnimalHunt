@@ -4,7 +4,7 @@
 #include "item.h"
 #include "creature.h"
 
-Creature::Creature(const char* title, const char* description, Room* room) : Entity(title, description, (Entity*)room) {
+Creature::Creature(const string name, const char* description, Room* room) : Entity(name, description, (Entity*)room) {
 	type = CREATURE;
 	hit_points = 1;
 	min_damage = max_damage = min_protection = max_protection = 0;
@@ -14,14 +14,12 @@ Creature::Creature(const char* title, const char* description, Room* room) : Ent
 
 Creature::~Creature(){}
 
-void Creature::Look(const vector<string>& args) const
-{
+void Creature::Look(const vector<string>& args) const {
 	if (IsAlive()) {
 		cout << name << endl;
 		cout << description << endl;
 	}
-	else
-	{
+	else {
 		cout << name << "'s corpse" << endl;
 		cout << "Here lies dead: " << description << endl;
 	}
@@ -204,14 +202,17 @@ bool Creature::IsAlive() const {
 }
 
 
-bool Creature::Attack(const vector<string>& args) {
-	Creature *target = (Creature*)parent->Find(args[1], CREATURE);
+bool Creature::Attack(const string targetName) {
+	Creature *target = (Creature*)parent->Find(targetName, CREATURE);
 
 	if (target == NULL) return false;
-
 	combat_target = target;
 	cout << endl << name << " attacks " << target->name << "!" << endl;
 	return true;
+}
+
+void Creature::Attack() {
+	MakeAttack();
 }
 
 int Creature::MakeAttack() {
@@ -220,28 +221,29 @@ int Creature::MakeAttack() {
 		return false;
 	}
 
-	//int result = (weapon) ? weapon->GetValue() : Roll(min_damage, max_damage);
-	int result = 4;
+	int result = (weapon) ? rand() % 10 + weapon->GetValue() : rand() % 5;
 
-	if (PlayerInRoom())	cout << name << " attacks " << combat_target->name << " for " << result << endl;
+	if (PlayerInRoom() && result > 0) cout << name << " ("<<hit_points << " HP) attacks " << combat_target->name << " for " << result << endl;
 
 	combat_target->ReceiveAttack(result);
 
 	if (combat_target->combat_target == NULL) combat_target->combat_target = this;
+	combat_target->Attack();
 
 	return result;
 }
 
 int Creature::ReceiveAttack(int damage) {
-	//int prot = (armour) ? armour->GetValue() : Roll(min_protection, max_protection);
-	int prot = 2;
+	int prot = (armour) ? rand() % 4 + armour->GetValue() : rand() % 2;
 	int received = damage - prot;
 
 	hit_points -= received;
 
-	if (PlayerInRoom())
-		cout << name << " is hit for " << received << " damage (" << prot << " blocked)" << endl;
-
+	if (PlayerInRoom()) {
+		if (damage == 0) cout << combat_target->name << "'s attack failed!" << endl;
+		else if(received > 0) cout << name << " is hit for " << received << " damage (" << prot << " blocked)" << endl;
+		else cout << name << " blocked the attack!" << endl;
+	}
 	if (IsAlive() == false)	Die();
 
 	return received;

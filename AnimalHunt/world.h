@@ -13,7 +13,7 @@ class Player;
 class World {
 public:
 
-	World();
+	World(string playerName);
 	~World();
 
 	void sendDirection(string command);

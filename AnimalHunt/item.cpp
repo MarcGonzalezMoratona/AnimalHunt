@@ -20,11 +20,10 @@ void Item::Look() const{
 	if (stuff.size() > 0) {
 		cout << "It contains: " << endl;
 		for (list<Entity*>::const_iterator it = stuff.begin(); it != stuff.cend(); ++it)
-			cout << (*it)->name << "\n";
+			cout << (*it)->name << endl;
 	}
 }
 
-//int Item::GetValue() const
-//{
-//	return Roll(min_value, max_value);
-//}
+int Item::GetValue() const {
+	return rand() % max_value + min_value;
+}

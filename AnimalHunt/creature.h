@@ -10,10 +10,9 @@ class Item;
 
 using namespace std;
 
-class Creature : public Entity
-{
+class Creature : public Entity {
 public:
-	Creature(const char* name, const char* description, Room* room);
+	Creature(const string name, const char* description, Room* room);
 	~Creature();
 
 	//virtual bool Go(const vector<string>& args);
@@ -25,7 +24,8 @@ public:
 	//virtual bool UnEquip(const vector<string>& args);
 	//virtual bool AutoEquip();
 
-	virtual bool Attack(const vector<string>& args);
+	virtual bool Attack(const string targetName);
+	virtual void Attack();
 	virtual int MakeAttack();
 	virtual int ReceiveAttack(int damage);
 	virtual void Die();

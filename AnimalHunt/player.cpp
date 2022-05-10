@@ -4,7 +4,7 @@
 #include "item.h"
 #include "player.h"
 
-Player::Player(const char* title, const char* description, Room* room) : Creature(title, description, room) {
+Player::Player(const string name, const char* description, Room* room) : Creature(name, description, room) {
 	type = PLAYER;
 }
 
@@ -209,7 +209,6 @@ bool Player::Attack(const string targetName) {
 	}
 
 	combat_target = target;
-	cout  << endl << "You attack " << target->name << "!" << endl;
 
 	if (combat_target != NULL) {
 		if (parent->Find(combat_target) == true) MakeAttack();

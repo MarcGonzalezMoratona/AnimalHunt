@@ -4,10 +4,10 @@
 #include <string>
 #include <list>
 
+
 using namespace std;
 
-enum EntityType
-{
+enum EntityType {
 	ENTITY,
 	ROOM,
 	EXIT,
@@ -16,14 +16,15 @@ enum EntityType
 	PLAYER
 };
 
-class Entity
-{
+class Entity {
 public:
-	Entity(const char* name, const char* description, Entity* parent);
+	Entity(const string name, const char* description, Entity* parent);
 	virtual ~Entity();
 
 	virtual void Look() const;
 
+	//virtual void Attack();
+	
 	void ChangeParentTo(Entity* new_parent);
 	bool Find(Entity* entity) const;
 	Entity* Find(EntityType type) const;
