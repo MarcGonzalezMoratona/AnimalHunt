@@ -4,7 +4,11 @@
 
 Animal Hunt is a conversational game inspired in ZORK.
 
-In this adventure, you are a hunter that has a debt with the bank and has to hunt animals and get its furs, sell them in the village store and pay the debt.
+In this game, your main goal will be to hunt animals and get furs, skins and feathers to pay a debt that you have with the bank.
+To win, you have to attack the animals (using a weapon is reccomended), kill them, loot them and give the items to the bank.
+If you die during a combat, the game is over.
+There is also a magic fountain where you can swim and recover your hit-points.
+
 There are some commands that you will need to know in order to play the game:
 
 - help - Shows the commands that you can use to play Animal Hunt
@@ -21,11 +25,6 @@ There are some commands that you will need to know in order to play the game:
 - loot (target) - Takes all the objects that belong to an animal
 - inventory - Shows all the objects that belong to you
 - quit - Closes the game
-
-In this game, your main goal will be to hunt animals and get furs, skins and feathers to pay a debt that you have with the bank.
-To win, you have to attack the animals (using a weapon is reccomended), kill them, loot them and give the items to the bank.
-If you die during a combat, the game is over.
-There is also a magic fountain where you can swim and recover your hit-points.
 
 ## Ideas not finished
 - Having a store where you can buy weapons and armours and sell items to get money.
