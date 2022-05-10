@@ -4,9 +4,7 @@
 #include "item.h"
 #include "creature.h"
 
-Creature::Creature(const char* title, const char* description, Room* room) :
-	Entity(title, description, (Entity*)room)
-{
+Creature::Creature(const char* title, const char* description, Room* room) : Entity(title, description, (Entity*)room) {
 	type = CREATURE;
 	hit_points = 1;
 	min_damage = max_damage = min_protection = max_protection = 0;
@@ -14,13 +12,11 @@ Creature::Creature(const char* title, const char* description, Room* room) :
 	combat_target = NULL;
 }
 
-Creature::~Creature()
-{}
+Creature::~Creature(){}
 
 void Creature::Look(const vector<string>& args) const
 {
-	if (IsAlive())
-	{
+	if (IsAlive()) {
 		cout << name << endl;
 		cout << description << endl;
 	}
