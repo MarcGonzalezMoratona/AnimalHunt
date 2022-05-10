@@ -22,7 +22,7 @@ public:
 	bool Attack(const string targetName);
 	bool Loot(const string targetName);
 	void RecoverHP();
-
+	bool PayDebt();
 
 public:
 

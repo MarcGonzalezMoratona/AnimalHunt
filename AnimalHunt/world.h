@@ -27,6 +27,7 @@ public:
 	void SendTargetToAttack(string target);
 
 	void RecoverHP();
+	bool PayDebt();
 	void ShowStats();
 	bool PlayerIsAlive();
 	void ShowInventory();

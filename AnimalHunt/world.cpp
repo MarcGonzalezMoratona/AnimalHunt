@@ -62,6 +62,8 @@ World::World(string playerName) {
 
 	Item* chest = new Item("chest", "This chest might contain an awesome treasure.", fountain);
 	Item* sword = new Item("sword", "A simple, old and rusty sword.", chest, WEAPON);
+	sword->min_value = 4;
+	sword->max_value = 8;
 
 	entities.push_back(knife);
 	entities.push_back(chest);
@@ -103,6 +105,10 @@ void World::SendDirection(string direction) {
 
 void World::RecoverHP() {
 	player->RecoverHP();
+}
+
+bool World::PayDebt() {
+	return player->PayDebt();
 }
 
 bool World::SendItemToTake(string item, string subitem) {

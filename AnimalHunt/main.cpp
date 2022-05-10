@@ -24,7 +24,8 @@ int main() {
 	cout << "\t examine (target) - Shows stats and objects that belong to an animal" << endl;
 	cout << "\t loot (target) - Takes all the objects that belong to an animal" << endl;
 	cout << "\t inventory - Shows all the objects that belong to you" << endl;
-	cout << "\t swim - If you are on the magic fountain, yo can recover HP" << endl;
+	cout << "\t swim - If you are on the magic fountain, you can recover HP" << endl;
+	cout << "\t pay - If you are on the bank, you can pay the debt" << endl;
 	cout << "\t quit - Closes the game" << endl << endl;
 
 	cout << "\t There are 8 possible directions:" << endl;
@@ -49,8 +50,9 @@ int main() {
 	
 	string command = "";
 	bool restart = false;
+	bool win = false;
 
-	while (command != "quit" && !restart) {
+	while (command != "quit" && !restart && !win) {
 		cin >> command;
 		cout << endl;
 
@@ -69,7 +71,8 @@ int main() {
 			cout << "\t examine (target) - Shows stats and objects that belong to an animal" << endl;
 			cout << "\t loot (target) - Takes all the objects that belong to an animal" << endl;
 			cout << "\t inventory - Shows all the objects that belong to you" << endl;
-			cout << "\t swim - If you are on the magic fountain, yo can recover HP" << endl;
+			cout << "\t swim - If you are on the magic fountain, you can recover HP" << endl;
+			cout << "\t pay - If you are on the bank, you can pay the debt" << endl;
 			cout << "\t quit - Closes the game" << endl << endl;
 
 			cout << "\t There are 8 possible directions:" << endl;
@@ -100,6 +103,9 @@ int main() {
 		}
 		else if (command == "stats") {
 			world.ShowStats();
+		}
+		else if (command == "pay") {
+			if (world.PayDebt()) win = true;
 		}
 		else if (command == "equip") {
 			string item;
@@ -157,6 +163,7 @@ int main() {
 	}
 
 	if (restart) cout << "You are dead." << endl;
+	else if (win) cout << "CONGRATULATIONS! You won!" << endl;
 	else system("CLS");
 	cout << "Thanks for playing!" << endl;
 

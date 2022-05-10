@@ -34,6 +34,20 @@ void Player::RecoverHP(){
 			cout << "The water from the magic fountain is healing your wounds... (" << hit_points << " HP)" << endl;
 		}
 	}
+	else cout << "You can not swim here" << endl;
+}
+
+bool Player::PayDebt() {
+	if (parent->name == "Bank") {
+		Item* fur = (Item*)Find("fur", ITEM);
+		Item* skin = (Item*)Find("skin", ITEM);
+		Item* feathers = (Item*)Find("feathers", ITEM);
+		if (fur != NULL & skin != NULL && feathers != NULL) return true;
+		cout << "You do not have all the items to pay the debt" << endl;
+		return false;
+	}
+	else cout << "This is not a bank" << endl;
+	return false;
 }
 
 
