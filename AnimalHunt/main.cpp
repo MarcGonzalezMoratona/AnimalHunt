@@ -24,6 +24,7 @@ int main() {
 	cout << "\t examine (target) - Shows stats and objects that belong to an animal" << endl;
 	cout << "\t loot (target) - Takes all the objects that belong to an animal" << endl;
 	cout << "\t inventory - Shows all the objects that belong to you" << endl;
+	cout << "\t swim - If you are on the magic fountain, yo can recover HP" << endl;
 	cout << "\t quit - Closes the game" << endl << endl;
 
 	cout << "\t There are 8 possible directions:" << endl;
@@ -68,6 +69,7 @@ int main() {
 			cout << "\t examine (target) - Shows stats and objects that belong to an animal" << endl;
 			cout << "\t loot (target) - Takes all the objects that belong to an animal" << endl;
 			cout << "\t inventory - Shows all the objects that belong to you" << endl;
+			cout << "\t swim - If you are on the magic fountain, yo can recover HP" << endl;
 			cout << "\t quit - Closes the game" << endl << endl;
 
 			cout << "\t There are 8 possible directions:" << endl;
