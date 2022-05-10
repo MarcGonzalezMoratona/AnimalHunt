@@ -12,18 +12,19 @@ There are some commands that you will need to know in order to play the game:
 - take (item) - Take an item from the room or inventory
 - drop (item) - Drop an item from inventory
 - look (place) - Look into a place to know which items or creatures are there
+- attack (target) - Attack an animal in order to hunt it
+- stats - Shows the player stats (HP, attack and protection)
 - quit - Closes the game
 
-
 ## Author
-Marc Gonz·lez Moratona
+Marc Gonz√°lez Moratona
 
 ## Links
 - https://github.com/marcelinus99/AnimalHunt
 
 ## MIT License
 
-Copyright (c) [2022] [Marc Gonz·lez Moratona]
+Copyright (c) [2022] [Marc Gonz√°lez Moratona]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
