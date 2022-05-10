@@ -13,11 +13,15 @@ int main() {
 	cout << "Commands of the game:" << endl << endl;
 	cout << "\t help - Shows the commands that you can use to play Animal Hunt" << endl;
 	cout << "\t go (direction) - Move the player to the given direction" << endl;
-	cout << "\t take (item) - Take an item from the room or inventory" << endl;
+	cout << "\t take (item, container) - Take an item from the room, inventory or container" << endl;
 	cout << "\t drop (item) - Drop an item from inventory" << endl;
+	cout << "\t put (item, container) - Put an item inside a container" << endl;
 	cout << "\t look (place) - Look into a place to know which items or creatures are there" << endl;
 	cout << "\t attack (target) - Attack an animal in order to hunt it" << endl;
 	cout << "\t stats - Shows the player stats (HP, attack and Protection)" << endl;
+	cout << "\t examine (target) - Shows stats and objects that belong to an animal" << endl;
+	cout << "\t loot (target) - Takes all the objects that belong to an animal" << endl;
+	cout << "\t inventory - Shows all the objects that belong to you" << endl;
 	cout << "\t quit - Closes the game" << endl << endl;
 
 	cout << "\t There are 8 possible directions:" << endl;
@@ -30,8 +34,8 @@ int main() {
 	World world(name);
 
 	cout << endl << "Dear " << name << "," << endl << endl;
-	cout << "I am writing to remind you that you have an outstanding debt of 50,000 rupees on your house." << endl;
-	cout << "In order to pay the debt, we strongly recommend you to use your skills as a hunter to get furs and sell them in the village store, "
+	cout << "I am writing to remind you that you have an outstanding debt on your house." << endl << endl;
+	cout << "In order to pay the debt, we strongly recommend you to use your hunting skills and bring to the bank a bear fur, a snake skin, and eagle feathers, "
 		"otherwise Mr. Smith will personally take care of this matter and you will lose your house." << endl << endl;
 	cout << "Best regards," << endl;
 	cout << "John Williams. Bank of America." << endl << endl;
@@ -52,11 +56,15 @@ int main() {
 			cout << "Commands of the game:" << endl << endl;
 			cout << "\t help - Shows the commands that you can use to play Animal Hunt" << endl;
 			cout << "\t go (direction) - Move the player to the given direction" << endl;
-			cout << "\t take (item) - Take an item from the room or inventory" << endl;
+			cout << "\t take (item, container) - Take an item from the room, inventory or container" << endl;
 			cout << "\t drop (item) - Drop an item from inventory" << endl;
+			cout << "\t put (item, container) - Put an item inside a container" << endl;
 			cout << "\t look (place) - Look into a place to know which items or creatures are there" << endl;
 			cout << "\t attack (target) - Attack an animal in order to hunt it" << endl;
 			cout << "\t stats - Shows the player stats (HP, attack and Protection)" << endl;
+			cout << "\t examine (target) - Shows stats and objects that belong to an animal" << endl;
+			cout << "\t loot (target) - Takes all the objects that belong to an animal" << endl;
+			cout << "\t inventory - Shows all the objects that belong to you" << endl;
 			cout << "\t quit - Closes the game" << endl << endl;
 
 			cout << "\t There are 8 possible directions:" << endl;
@@ -88,6 +96,11 @@ int main() {
 		else if (command == "stats") {
 			world.ShowStats();
 		}
+		else if (command == "examine") {
+			string target;
+			cin >> target;
+			world.SendExaminationTarget(target);
+		}
 		else if (command == "drop") {
 			string item;
 			cin >> item;
@@ -101,10 +114,18 @@ int main() {
 			cin >> parent;
 			world.SendItemToDrop(parent, item);
 		}
+		else if (command == "inventory") {
+			world.ShowInventory();
+		}
 		else if (command == "look") {
 			string placeToLook;
 			cin >> placeToLook;
 			world.SendPlaceToLook(placeToLook);
+		}
+		else if (command == "loot") {
+			string target;
+			cin >> target;
+			world.SendLootTarget(target);
 		}
 		else if (command == "attack") {
 			string target;

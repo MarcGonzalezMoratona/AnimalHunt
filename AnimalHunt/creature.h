@@ -15,21 +15,15 @@ public:
 	Creature(const string name, const char* description, Room* room);
 	~Creature();
 
-	//virtual bool Go(const vector<string>& args);
 	virtual void Look(const vector<string>& args) const;
-	//virtual bool Take(const vector<string>& args);
-	//virtual bool Drop(const vector<string>& args);
-	//virtual void Inventory() const;
-	//virtual bool Equip(const vector<string>& args);
-	//virtual bool UnEquip(const vector<string>& args);
-	//virtual bool AutoEquip();
+	virtual bool AutoEquip();
+	virtual void Inventory() const;
 
 	virtual bool Attack(const string targetName);
 	virtual void Attack();
 	virtual int MakeAttack();
 	virtual int ReceiveAttack(int damage);
 	virtual void Die();
-	//virtual bool Loot(const vector<string>& args);
 	virtual void Stats() const;
 
 	Room* GetRoom() const;

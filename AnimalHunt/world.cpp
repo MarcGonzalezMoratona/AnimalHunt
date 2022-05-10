@@ -51,7 +51,7 @@ World::World(string playerName) {
 	eagle->hit_points = 5;
 	entities.push_back(eagle);
 
-	// Items -----
+	// Items ----
 	Item* knife = new Item("knife", "A knife.", house, WEAPON);
 	knife->min_value = 2;
 	knife->max_value = 6;
@@ -59,15 +59,20 @@ World::World(string playerName) {
 	Item* chest = new Item("chest", "This chest might contain an awesome treasure.", fountain);
 	Item* sword = new Item("sword", "A simple old and rusty sword.", chest, WEAPON);
 
-	//Item* shield = new Item("Shield", "An old wooden shield.", butler, ARMOUR);
-	//shield->min_value = 1;
-	//shield->max_value = 3;
-	//butler->AutoEquip();
-
 	entities.push_back(knife);
 	entities.push_back(chest);
 	entities.push_back(sword);
-	//entities.push_back(shield);
+
+	Item* bearFur = new Item("fur", "", bear);
+	bear->AutoEquip();
+	Item* snakeSkin = new Item("skin", "Skin from a long, venomous snake", snake);
+	snake->AutoEquip();
+	Item* eagleFeathers = new Item("feathers", "Feathers from an eagle of the highest mountain in this world.", eagle);
+	eagle->AutoEquip();
+
+	entities.push_back(bearFur);
+	entities.push_back(snakeSkin);
+	entities.push_back(eagleFeathers);
 
 	player = new Player(playerName, "You are an amazing adventurer!", house);
 	player->hit_points = 25;
@@ -95,6 +100,20 @@ void World::SendDirection(string direction) {
 bool World::SendItemToTake(string item, string subitem) {
 	return player->Take(item, subitem);
 }
+
+void World::SendExaminationTarget(string targetName) {
+	player->Examine(targetName);
+}
+
+void World::ShowInventory() {
+	player->Inventory();
+}
+
+
+void World::SendLootTarget(string targetName) {
+	player->Loot(targetName);
+}
+
 
 bool World::PlayerIsAlive() {
 	return player->IsAlive();

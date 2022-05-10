@@ -19,10 +19,13 @@ public:
 	void SendDirection(string command);
 	bool SendItemToTake(string item, string subitem);
 	bool SendItemToDrop(string item, string subitem);
+	void SendExaminationTarget(string targetName);
+	void SendLootTarget(string targetName);
 	void SendPlaceToLook(string placeToLook);
 	void SendTargetToAttack(string target);
 	void ShowStats();
 	bool PlayerIsAlive();
+	void ShowInventory();
 
 private:
 

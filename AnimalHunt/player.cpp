@@ -75,27 +75,22 @@ bool Player::Take(string itemName, string subitemName) {
 	return false;
 }
 
-//void Player::Inventory() const {
-//	list<Entity*> items;
-//	FindAll(ITEM, items);
-//
-//	if (items.size() == 0)
-//	{
-//		cout << endl <<"You do not own any item." << endl;
-//		return;
-//	}
-//
-//	for (list<Entity*>::const_iterator it = items.begin(); it != items.cend(); ++it)
-//	{
-//		if (*it == weapon)
-//			cout << endl << (*it)->name << " (as weapon)";
-//		else if (*it == armour)
-//			cout << endl << (*it)->name << " (as armour)";
-//		else
-//			cout << endl << (*it)->name;
-//	}
-//	cout << "\n";
-//}
+void Player::Inventory() const {
+	list<Entity*> items;
+	FindAll(ITEM, items);
+
+	if (items.size() == 0) {
+		cout << endl <<"You do not own any item." << endl;
+		return;
+	}
+
+	for (list<Entity*>::const_iterator it = items.begin(); it != items.cend(); ++it) {
+		if (*it == weapon) cout << endl << (*it)->name << " (as weapon)";
+		else if (*it == armour) cout << endl << (*it)->name << " (as armour)";
+		else cout << endl << (*it)->name;
+	}
+	cout << endl;
+}
 
 bool Player::Drop(const string itemName, const string subitemName) {
 	if (itemName == "") {
@@ -171,19 +166,18 @@ bool Player::Drop(const string itemName, const string subitemName) {
 //	return true;
 //}
 
-//bool Player::Examine(const vector<string>& args) const {
-//	Creature *target = (Creature*)parent->Find(args[1], CREATURE);
-//
-//	if (target == NULL) {
-//		cout << endl << args[1] << " is not here." << endl;
-//		return false;
-//	}
-//
-//	target->Inventory();
-//	target->Stats();
-//
-//	return true;
-//}
+bool Player::Examine(const string targetName) const {
+	Creature *target = (Creature*)parent->Find(targetName, CREATURE);
+
+	if (target == NULL) {
+		cout << endl << targetName << " is not here." << endl;
+		return false;
+	}
+
+	target->Inventory();
+	target->Stats();
+	return true;
+}
 
 bool Player::Attack(const string targetName) {
 	Creature *target = (Creature*)parent->Find(targetName, CREATURE);
@@ -202,32 +196,31 @@ bool Player::Attack(const string targetName) {
 	return true;
 }
 
-//bool Player::Loot(const vector<string>& args) {
-//	Creature *target = (Creature*)parent->Find(args[1], CREATURE);
-//
-//	if (target == NULL) {
-//		cout  << endl << args[1] << " is not here." << endl;
-//		return false;
-//	}
-//
-//	if (target->IsAlive() == true) {
-//		cout << endl << target->name << " cannot be looted until it is killed." << endl;
-//		return false;
-//	}
-//
-//	list<Entity*> items;
-//	target->FindAll(ITEM, items);
-//
-//	if (items.size() > 0) {
-//		cout  << endl<< "You loot " << target->name << "'s corpse:" << endl;
-//
-//		for (list<Entity*>::const_iterator it = items.begin(); it != items.cend(); ++it)
-//		{
-//			Item* i = (Item*)(*it);
-//			cout << "You find: " << i->name << "\n";
-//			i->ChangeParentTo(this);
-//		}
-//	}
-//	else cout  << endl << "You loot " << target->name << "'s corpse, but find nothing there." << endl;
-//	return true;
-//}
+bool Player::Loot(const string targetName) {
+	Creature *target = (Creature*)parent->Find(targetName, CREATURE);
+
+	if (target == NULL) {
+		cout  << endl << targetName << " is not here." << endl;
+		return false;
+	}
+
+	if (target->IsAlive() == true) {
+		cout << endl << target->name << " cannot be looted until it is killed." << endl;
+		return false;
+	}
+
+	list<Entity*> items;
+	target->FindAll(ITEM, items);
+
+	if (items.size() > 0) {
+		cout  << endl<< "You loot " << target->name << "'s corpse:" << endl;
+
+		for (list<Entity*>::const_iterator it = items.begin(); it != items.cend(); ++it) {
+			Item* i = (Item*)(*it);
+			cout << "You find: " << i->name << endl;
+			i->ChangeParentTo(this);
+		}
+	}
+	else cout  << endl << "You loot " << target->name << "'s corpse, but find nothing there." << endl;
+	return true;
+}
