@@ -22,6 +22,7 @@ public:
 	void SendPlaceToLook(string placeToLook);
 	void SendTargetToAttack(string target);
 	void ShowStats();
+	bool PlayerIsAlive();
 
 private:
 

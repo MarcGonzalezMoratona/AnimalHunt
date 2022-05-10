@@ -244,8 +244,7 @@ int Creature::ReceiveAttack(int damage) {
 		else if(received > 0) cout << name << " is hit for " << received << " damage (" << prot << " blocked)" << endl;
 		else cout << name << " blocked the attack!" << endl;
 	}
-	if (IsAlive() == false)	Die();
-
+	if (!IsAlive()) Die();
 	return received;
 }
 
@@ -273,7 +272,7 @@ void Creature::Die() {
 //}
 
 void Creature::Stats() const {
-	cout << endl << "Hit Points: " << hit_points;
+	cout << "Hit Points: " << hit_points;
 	cout << endl << "Attack: (" << ((weapon) ? weapon->name : "no weapon") << ") ";
 	cout << ((weapon) ? weapon->min_value : min_damage) << "-" << ((weapon) ? weapon->max_value : max_damage);
 	cout << endl << "Protection: (" << ((armour) ? armour->name : "no armour") << ") ";

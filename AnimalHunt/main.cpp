@@ -18,6 +18,7 @@ int main() {
 	cout << "\t drop (item) - Drop an item from inventory" << endl;
 	cout << "\t look (place) - Look into a place to know which items or creatures are there" << endl;
 	cout << "\t attack (target) - Attack an animal in order to hunt it" << endl;
+	cout << "\t stats - Shows the player stats (HP, attack and Protection)" << endl;
 	cout << "\t quit - Closes the game" << endl << endl;
 
 	cout << "\t There are 8 possible directions:" << endl;
@@ -42,8 +43,9 @@ int main() {
 	world.SendPlaceToLook("here");
 	
 	string command = "";
+	bool restart = false;
 
-	while (command != "quit") {
+	while (command != "quit" && !restart) {
 		cin >> command;
 		cout << endl;
 
@@ -56,6 +58,7 @@ int main() {
 			cout << "\t drop (item) - Drop an item from inventory" << endl;
 			cout << "\t look (place) - Look into a place to know which items or creatures are there" << endl;
 			cout << "\t attack (target) - Attack an animal in order to hunt it" << endl;
+			cout << "\t stats - Shows the player stats (HP, attack and Protection)" << endl;
 			cout << "\t quit - Closes the game" << endl << endl;
 
 			cout << "\t There are 8 possible directions:" << endl;
@@ -109,9 +112,12 @@ int main() {
 		}
 		else if (command != "quit") commandNotValid();
 		if (command != "quit") cout << endl;
+
+		restart = !world.PlayerIsAlive();
 	}
 
-	system("CLS");
+	if (restart) cout << "You are dead." << endl;
+	else system("CLS");
 	cout << "Thanks for playing!" << endl;
 
 	return 0;

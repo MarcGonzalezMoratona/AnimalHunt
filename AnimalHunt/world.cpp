@@ -96,6 +96,10 @@ void World::SendItemToTake(string item, string subitem) {
 	player->Take(item, subitem);
 }
 
+bool World::PlayerIsAlive() {
+	return player->IsAlive();
+}
+
 void World::SendItemToDrop(string item) {
 	//player->Drop(item);
 }
