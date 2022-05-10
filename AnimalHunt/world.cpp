@@ -15,6 +15,7 @@ World::World(string playerName) {
 	Room* cave = new Room("Cave", "A cave.");
 	Room* mountain = new Room("Mountain", "You are on highest mountain of this world.");
 	Room* fountain = new Room("Fountain", "You are next to a magic fountain that has healing properties.");
+	Room* church = new Room("Church", "A church where you can donate money and pray.");
 
 	Exit* ex1 = new Exit("east", "west", "Little path", house, forest);
 	Exit* ex2 = new Exit("north", "south", "Little path", house, bank);
@@ -22,6 +23,7 @@ World::World(string playerName) {
 	Exit* ex4 = new Exit("east", "west", "Little path", forest, cave);
 	Exit* ex5 = new Exit("north", "south", "Little path", forest, mountain);
 	Exit* ex6 = new Exit("south", "north", "Little path", forest, fountain);
+	Exit* ex7 = new Exit("west", "east", "Little path", house, church);
 
 	entities.push_back(forest);
 	entities.push_back(house);
@@ -30,6 +32,7 @@ World::World(string playerName) {
 	entities.push_back(cave);
 	entities.push_back(mountain);
 	entities.push_back(fountain);
+	entities.push_back(church);
 
 	entities.push_back(ex1);
 	entities.push_back(ex2);
@@ -37,6 +40,7 @@ World::World(string playerName) {
 	entities.push_back(ex4);
 	entities.push_back(ex5);
 	entities.push_back(ex6);
+	entities.push_back(ex7);
 
 	// Creatures ----
 	Creature* bear = new Creature("bear", "A big angry bear.", forest);
@@ -109,16 +113,13 @@ void World::ShowInventory() {
 	player->Inventory();
 }
 
-
 void World::SendLootTarget(string targetName) {
 	player->Loot(targetName);
 }
 
-
 bool World::PlayerIsAlive() {
 	return player->IsAlive();
 }
-
 
 void World::SendItemToEquip(string item) {
 	player->Equip(item);
