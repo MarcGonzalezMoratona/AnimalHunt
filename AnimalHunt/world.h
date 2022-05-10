@@ -20,6 +20,7 @@ public:
 	void sendItemToTake(string item, string subitem);
 	void sendItemToDrop(string item);
 	void sendPlaceToLook(string placeToLook);
+	void sendTargetToAttack(string target);
 
 private:
 

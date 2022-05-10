@@ -18,6 +18,7 @@ int main() {
 	cout << "\t take (item) - Take an item from the room or inventory" << endl;
 	cout << "\t drop (item) - Drop an item from inventory" << endl;
 	cout << "\t look (place) - Look into a place to know which items or creatures are there" << endl;
+	cout << "\t attack (target) - Attack an animal in order to hunt it" << endl;
 	cout << "\t quit - Closes the game" << endl << endl;
 
 	cout << "\t There are 8 possible directions:" << endl;
@@ -50,6 +51,7 @@ int main() {
 			cout << "\t take (item) - Take an item from the room or inventory" << endl;
 			cout << "\t drop (item) - Drop an item from inventory" << endl;
 			cout << "\t look (place) - Look into a place to know which items or creatures are there" << endl;
+			cout << "\t attack (target) - Attack an animal in order to hunt it" << endl;
 			cout << "\t quit - Closes the game" << endl << endl;
 
 			cout << "\t There are 8 possible directions:" << endl;
@@ -92,6 +94,11 @@ int main() {
 			string placeToLook;
 			cin >> placeToLook;
 			world.sendPlaceToLook(placeToLook);
+		}
+		else if (command == "attack") {
+			string target;
+			cin >> target;
+			world.sendTargetToAttack(target);
 		}
 		else if (command != "quit") commandNotValid();
 

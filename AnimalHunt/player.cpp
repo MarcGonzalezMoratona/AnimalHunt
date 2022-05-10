@@ -200,18 +200,23 @@ bool Player::Take(string itemName, string subitemName) {
 //	return true;
 //}
 
-//bool Player::Attack(const vector<string>& args) {
-//	Creature *target = (Creature*)parent->Find(args[1], CREATURE);
-//
-//	if (target == NULL) {
-//		cout  << endl << args[1] << " is not here.";
-//		return false;
-//	}
-//
-//	combat_target = target;
-//	cout  << endl << "You attack " << target->name << "!" << endl;
-//	return true;
-//}
+bool Player::Attack(const string targetName) {
+	Creature *target = (Creature*)parent->Find(targetName, CREATURE);
+
+	if (target == NULL) {
+		cout  << endl << targetName << " is not here.";
+		return false;
+	}
+
+	combat_target = target;
+	cout  << endl << "You attack " << target->name << "!" << endl;
+
+	if (combat_target != NULL) {
+		if (parent->Find(combat_target) == true) MakeAttack();
+		else combat_target = NULL;
+	}
+	return true;
+}
 
 //bool Player::Loot(const vector<string>& args) {
 //	Creature *target = (Creature*)parent->Find(args[1], CREATURE);

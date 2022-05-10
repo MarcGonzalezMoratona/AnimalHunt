@@ -19,7 +19,7 @@ public:
 	//bool Equip(const vector<string>& args);
 	//bool UnEquip(const vector<string>& args);
 	//bool Examine(const vector<string>& args) const;
-	//bool Attack(const vector<string>& args);
+	bool Attack(const string targetName);
 	//bool Loot(const vector<string>& args);
 
 public:

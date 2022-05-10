@@ -39,15 +39,15 @@ World::World() {
 	entities.push_back(ex6);
 
 	// Creatures ----
-	Creature* bear = new Creature("Bear", "A big angry bear.", forest);
+	Creature* bear = new Creature("bear", "A big angry bear.", forest);
 	bear->hit_points = 10;
 	entities.push_back(bear);
 
-	Creature* snake = new Creature("Snake", "A long, venomous snake.", cave);
+	Creature* snake = new Creature("snake", "A long, venomous snake.", cave);
 	snake->hit_points = 15;
 	entities.push_back(snake);
 
-	Creature* eagle = new Creature("Eagle", "A hungry eagle.", mountain);
+	Creature* eagle = new Creature("eagle", "A hungry eagle.", mountain);
 	eagle->hit_points = 5;
 	entities.push_back(eagle);
 
@@ -99,9 +99,13 @@ void World::sendItemToTake(string item, string subitem) {
 }
 
 void World::sendItemToDrop(string item) {
-	player->Drop(item);
+	//player->Drop(item);
 }
 
 void World::sendPlaceToLook(string placeToLook) {
 	player->Look(placeToLook);
+}
+
+void World::sendTargetToAttack(string target) {
+	player->Attack(target);
 }

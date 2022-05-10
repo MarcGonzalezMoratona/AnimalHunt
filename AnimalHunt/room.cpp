@@ -43,8 +43,7 @@ void Room::Look() const {
 	cout << endl;
 }
 
-Exit* Room::GetExit(const string& direction) const
-{
+Exit* Room::GetExit(const string& direction) const {
 	for (list<Entity*>::const_iterator it = container.begin(); it != container.cend(); ++it) {
 		if ((*it)->type == EXIT) {
 			Exit* ex = (Exit*)*it;

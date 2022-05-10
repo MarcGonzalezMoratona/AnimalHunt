@@ -24,19 +24,16 @@ public:
 	//virtual bool Equip(const vector<string>& args);
 	//virtual bool UnEquip(const vector<string>& args);
 	//virtual bool AutoEquip();
-	//virtual bool Lock(const vector<string>& args);
-	//virtual bool UnLock(const vector<string>& args);
-	//virtual void Tick();
 
-	//virtual bool Attack(const vector<string>& args);
-	//virtual int MakeAttack();
-	//virtual int ReceiveAttack(int damage);
-	//virtual void Die();
+	virtual bool Attack(const vector<string>& args);
+	virtual int MakeAttack();
+	virtual int ReceiveAttack(int damage);
+	virtual void Die();
 	//virtual bool Loot(const vector<string>& args);
 	virtual void Stats() const;
 
 	Room* GetRoom() const;
-	//bool PlayerInRoom() const;
+	bool PlayerInRoom() const;
 	bool IsAlive() const;
 
 public:
