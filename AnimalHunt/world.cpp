@@ -11,10 +11,10 @@ World::World(string playerName) {
 	Room* forest = new Room("Forest", "You are surrounded by tall trees. It feels like a huge forest someone could get lost easily.");
 	Room* house = new Room("House", "You are inside a beautiful but small white house.");
 	Room* store = new Room("Store", "Store.");
-	Room* bank = new Room("Bank", "The bank.");
+	Room* bank = new Room("Bank", "The bank of America.");
 	Room* cave = new Room("Cave", "A cave.");
-	Room* mountain = new Room("Mountain", "Mountain.");
-	Room* fountain = new Room("Fountain", "Fountain.");
+	Room* mountain = new Room("Mountain", "You are on highest mountain of this world.");
+	Room* fountain = new Room("Fountain", "You are next to a magic fountain that has healing properties.");
 
 	Exit* ex1 = new Exit("east", "west", "Little path", house, forest);
 	Exit* ex2 = new Exit("north", "south", "Little path", house, bank);
@@ -55,10 +55,9 @@ World::World(string playerName) {
 	Item* knife = new Item("knife", "A knife.", house, WEAPON);
 	knife->min_value = 2;
 	knife->max_value = 6;
-	//Item* sword = new Item("Sword", "A simple old and rusty sword.", forest, WEAPON);
 
-	//Item* sword2(sword);
-	//sword2->parent = butler;
+	Item* chest = new Item("chest", "This chest might contain an awesome treasure.", fountain);
+	Item* sword = new Item("sword", "A simple old and rusty sword.", chest, WEAPON);
 
 	//Item* shield = new Item("Shield", "An old wooden shield.", butler, ARMOUR);
 	//shield->min_value = 1;
@@ -66,10 +65,11 @@ World::World(string playerName) {
 	//butler->AutoEquip();
 
 	entities.push_back(knife);
-	//entities.push_back(sword);
+	entities.push_back(chest);
+	entities.push_back(sword);
 	//entities.push_back(shield);
 
-	player = new Player(playerName, "You are an awesome adventurer!", house);
+	player = new Player(playerName, "You are an amazing adventurer!", house);
 	player->hit_points = 25;
 	entities.push_back(player);
 
@@ -92,16 +92,16 @@ void World::SendDirection(string direction) {
 	player->Go(direction);
 }
 
-void World::SendItemToTake(string item, string subitem) {
-	player->Take(item, subitem);
+bool World::SendItemToTake(string item, string subitem) {
+	return player->Take(item, subitem);
 }
 
 bool World::PlayerIsAlive() {
 	return player->IsAlive();
 }
 
-void World::SendItemToDrop(string item) {
-	//player->Drop(item);
+bool World::SendItemToDrop(string item, string subitem) {
+	return player->Drop(item, subitem);
 }
 
 void World::ShowStats() {

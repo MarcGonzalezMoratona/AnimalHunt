@@ -11,10 +11,11 @@ public:
 	Player(const string name, const char* description, Room* room);
 	~Player();
 
+
 	bool Go(const string direction);
 	void Look(const string item) const;
 	bool Take(const string item, const string subitem);
-	bool Drop(const string item);
+	bool Drop(const string item, const string subitem);
 	//void Inventory() const;
 	//bool Equip(const vector<string>& args);
 	//bool UnEquip(const vector<string>& args);

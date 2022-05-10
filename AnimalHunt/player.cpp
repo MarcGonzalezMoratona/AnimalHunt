@@ -42,7 +42,6 @@ bool Player::Go(string direction) {
 	return true;
 }
 
-
 bool Player::Take(string itemName, string subitemName) {
 	if (itemName != "") {
 		Item* item = (Item*)parent->Find(itemName, ITEM);
@@ -64,19 +63,15 @@ bool Player::Take(string itemName, string subitemName) {
 
 		cout << endl << "You take " << subitem->name << " from " << item->name << "." << endl;
 		subitem->ChangeParentTo(this);
+		return true;
 	}
 	else {
 		Item* item = (Item*)parent->Find(subitemName, ITEM);
-
-		if (item == NULL) {
-			cout << endl << "There is no item here with that name." << endl;
-			return false;
-		}
-
+		if (item == NULL) return false;
 		cout << endl << "You take " << item->name << "." << endl;
 		item->ChangeParentTo(this);
+		return true;
 	}
-
 	return false;
 }
 
@@ -102,43 +97,33 @@ bool Player::Take(string itemName, string subitemName) {
 //	cout << "\n";
 //}
 
-//bool Player::Drop(const vector<string>& args) {
-//	if (args.size() == 2) {
-//		Item* item = (Item*)Find(args[1], ITEM);
-//
-//		if (item == NULL) {
-//			cout << endl << "There is no item on you with that name." << endl;
-//			return false;
-//		}
-//
-//		cout << endl << "You drop " << item->name << "..." << endl;
-//		item->ChangeParentTo(parent);
-//
-//		return true;
-//	}
-//	else if (args.size() == 4) {
-//		Item* item = (Item*)Find(args[1], ITEM);
-//
-//		if (item == NULL) {
-//			cout << endl << "Cannot find '" << args[1] << "' in your inventory." << endl;
-//			return false;
-//		}
-//
-//		Item* container = (Item*)parent->Find(args[3], ITEM);
-//
-//		if (container == NULL) {
-//		container = (Item*)Find(args[3], ITEM);
-//			cout << endl <<"Cannot find '" << args[3] << "' in your inventory or in the room." << endl;
-//			return false;
-//		}
-//
-//		cout << endl << "You put " << item->name << " into " << container->name << "." << endl;
-//		item->ChangeParentTo(container);
-//
-//		return true;
-//	}
-//	return false;
-//}
+bool Player::Drop(const string itemName, const string subitemName) {
+	if (itemName == "") {
+		Item* item = (Item*)Find(subitemName, ITEM);
+		// we could pick something from a container in our inventory ...
+		if (item == NULL) item = (Item*)Find(subitemName, ITEM);
+		if (item == NULL) return false;
+		cout << endl << "You drop " << item->name << "..." << endl;
+		item->ChangeParentTo(parent);
+		return true;
+	}
+	else {
+		Item* item = (Item*)Find(subitemName, ITEM);
+		if (item == NULL) return false;
+		Item* container = (Item*)parent->Find(itemName, ITEM);
+
+		if (container == NULL) {
+			container = (Item*)Find(subitemName, ITEM);
+			cout << endl <<"Cannot find '" << subitemName << "' in your inventory or in the room." << endl;
+			return false;
+		}
+
+		cout << endl << "You put " << item->name << " into " << container->name << "." << endl;
+		item->ChangeParentTo(container);
+		return true;
+	}
+	return false;
+}
 
 //bool Player::Equip(const vector<string>& args) {
 //	Item* item = (Item*)Find(args[1], ITEM);

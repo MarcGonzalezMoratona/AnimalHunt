@@ -23,8 +23,6 @@ public:
 
 	virtual void Look() const;
 
-	//virtual void Attack();
-	
 	void ChangeParentTo(Entity* new_parent);
 	bool Find(Entity* entity) const;
 	Entity* Find(EntityType type) const;
@@ -33,8 +31,8 @@ public:
 
 public:
 	EntityType type;
-	std::string name;
-	std::string description;
+	string name;
+	string description;
 
 	Entity* parent;
 	list<Entity*> container;

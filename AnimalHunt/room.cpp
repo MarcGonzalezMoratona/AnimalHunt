@@ -27,7 +27,19 @@ void Room::Look() const {
 	for (list<Entity*>::const_iterator it = container.begin(); it != container.cend(); ++it) {
 		if ((*it)->type == ITEM) {
 			Item* item = (Item*)*it;
-			cout << endl << "There is an item here: " << item->name << endl;
+			cout << endl << "There is an item here: " << item->name;
+			if (item->container.size() > 0) {
+				cout << " (contains ";
+				for (list<Entity*>::const_iterator it = item->container.begin(); it != item->container.cend(); ++it) {
+					Item* subitem = (Item*)*it;
+					cout << subitem->name;
+					list<Entity*>::const_iterator it2 = item->container.cend();
+					--it2;
+					if (it != it2) cout << ", ";
+				}
+				cout << ")" << endl;
+			}
+			else cout << endl;
 		}
 	}
 

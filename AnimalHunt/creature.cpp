@@ -19,10 +19,7 @@ void Creature::Look(const vector<string>& args) const {
 		cout << name << endl;
 		cout << description << endl;
 	}
-	else {
-		cout << name << "'s corpse" << endl;
-		cout << "Here lies dead: " << description << endl;
-	}
+	else cout << name << "'s corpse" << endl;
 }
 
 //bool Creature::Go(const vector<string>& args) {

@@ -10,7 +10,6 @@ void commandNotValid() {
 
 int main() {
 	cout << "Welcome to Animal Hunt!" << endl << endl;
-	// TODO: UPDATE COMMANDS
 	cout << "Commands of the game:" << endl << endl;
 	cout << "\t help - Shows the commands that you can use to play Animal Hunt" << endl;
 	cout << "\t go (direction) - Move the player to the given direction" << endl;
@@ -50,7 +49,6 @@ int main() {
 		cout << endl;
 
 		if (command == "help") {
-			// TODO: UPDATE COMMANDS
 			cout << "Commands of the game:" << endl << endl;
 			cout << "\t help - Shows the commands that you can use to play Animal Hunt" << endl;
 			cout << "\t go (direction) - Move the player to the given direction" << endl;
@@ -78,27 +76,30 @@ int main() {
 			else commandNotValid();
 		}
 		else if (command == "take" || command == "pick") {
-			string subitem;
-			cin >> subitem;
-			cout << "is this item inside another item? (Yes/No)" << endl;
-			string answer;
-			cin >> answer;
-			if (answer == "y" || answer == "yes") {
-				cout << endl << "take " << subitem << " from ";
-				string item;
-				cin >> item;
-				world.SendItemToTake(item, subitem);
+			string item;
+			cin >> item;
+			if(!world.SendItemToTake("", item)) {
+				cout << endl << command << " " << item << " from ";
+				string parent;
+				cin >> parent;
+				world.SendItemToTake(parent, item);
 			}
-			else if(answer == "n" || answer == "no") world.SendItemToTake("", subitem);
-			else commandNotValid();
 		}
 		else if (command == "stats") {
 			world.ShowStats();
 		}
-		else if (command == "drop" || command == "put") {
+		else if (command == "drop") {
 			string item;
 			cin >> item;
-			world.SendItemToDrop(item);
+			world.SendItemToDrop("", item);
+		}
+		else if (command == "put") {
+			string item;
+			cin >> item;
+			cout << endl << command << " " << item << " into ";
+			string parent;
+			cin >> parent;
+			world.SendItemToDrop(parent, item);
 		}
 		else if (command == "look") {
 			string placeToLook;

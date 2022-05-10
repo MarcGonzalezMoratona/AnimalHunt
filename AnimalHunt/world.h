@@ -17,8 +17,8 @@ public:
 	~World();
 
 	void SendDirection(string command);
-	void SendItemToTake(string item, string subitem);
-	void SendItemToDrop(string item);
+	bool SendItemToTake(string item, string subitem);
+	bool SendItemToDrop(string item, string subitem);
 	void SendPlaceToLook(string placeToLook);
 	void SendTargetToAttack(string target);
 	void ShowStats();

@@ -24,9 +24,6 @@ void Entity::ChangeParentTo(Entity* new_parent) {
 		parent->container.push_back(this);
 }
 
-//void Entity::Attack() {}
-
-
 bool Entity::Find(Entity* entity) const {
 	for (list<Entity*>::const_iterator it = container.begin(); it != container.cend(); ++it) {
 		if ((*it) == entity) return true;
