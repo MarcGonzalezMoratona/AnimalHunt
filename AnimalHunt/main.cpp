@@ -39,7 +39,7 @@ int main() {
 	cout << "Press Enter to continue" << endl;
 	cin.ignore();
 	system("CLS");
-	world.sendPlaceToLook("here");
+	world.SendPlaceToLook("here");
 	
 	string command = "";
 
@@ -71,7 +71,7 @@ int main() {
 				direction == "nw" || direction == "north-west" || 
 				direction == "ne" || direction == "north-east" ||
 				direction == "sw" || direction == "south-west" ||
-				direction == "se" || direction == "south-east") world.sendDirection(direction);
+				direction == "se" || direction == "south-east") world.SendDirection(direction);
 			else commandNotValid();
 		}
 		else if (command == "take" || command == "pick") {
@@ -84,25 +84,28 @@ int main() {
 				cout << endl << "take " << subitem << " from ";
 				string item;
 				cin >> item;
-				world.sendItemToTake(item, subitem);
+				world.SendItemToTake(item, subitem);
 			}
-			else if(answer == "n" || answer == "no") world.sendItemToTake("", subitem);
+			else if(answer == "n" || answer == "no") world.SendItemToTake("", subitem);
 			else commandNotValid();
+		}
+		else if (command == "stats") {
+			world.ShowStats();
 		}
 		else if (command == "drop" || command == "put") {
 			string item;
 			cin >> item;
-			world.sendItemToDrop(item);
+			world.SendItemToDrop(item);
 		}
 		else if (command == "look") {
 			string placeToLook;
 			cin >> placeToLook;
-			world.sendPlaceToLook(placeToLook);
+			world.SendPlaceToLook(placeToLook);
 		}
 		else if (command == "attack") {
 			string target;
 			cin >> target;
-			world.sendTargetToAttack(target);
+			world.SendTargetToAttack(target);
 		}
 		else if (command != "quit") commandNotValid();
 		if (command != "quit") cout << endl;

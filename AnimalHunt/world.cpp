@@ -80,7 +80,7 @@ World::~World() {
 	entities.clear();
 }
 
-void World::sendDirection(string direction) {
+void World::SendDirection(string direction) {
 	if (direction == "n") direction = "north";
 	else if (direction == "s") direction = "south";
 	else if (direction == "w") direction = "west";
@@ -92,19 +92,23 @@ void World::sendDirection(string direction) {
 	player->Go(direction);
 }
 
-void World::sendItemToTake(string item, string subitem) {
+void World::SendItemToTake(string item, string subitem) {
 	player->Take(item, subitem);
 }
 
-void World::sendItemToDrop(string item) {
+void World::SendItemToDrop(string item) {
 	//player->Drop(item);
 }
 
-void World::sendPlaceToLook(string placeToLook) {
+void World::ShowStats() {
+	player->Stats();
+}
+
+void World::SendPlaceToLook(string placeToLook) {
 	player->Look(placeToLook);
 }
 
-void World::sendTargetToAttack(string target) {
+void World::SendTargetToAttack(string target) {
 	player->Attack(target);
 	//for (list<Entity*>::iterator it = entities.begin(); it != entities.end(); ++it) (*it)->Attack();
 }

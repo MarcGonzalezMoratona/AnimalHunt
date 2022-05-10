@@ -16,11 +16,12 @@ public:
 	World(string playerName);
 	~World();
 
-	void sendDirection(string command);
-	void sendItemToTake(string item, string subitem);
-	void sendItemToDrop(string item);
-	void sendPlaceToLook(string placeToLook);
-	void sendTargetToAttack(string target);
+	void SendDirection(string command);
+	void SendItemToTake(string item, string subitem);
+	void SendItemToDrop(string item);
+	void SendPlaceToLook(string placeToLook);
+	void SendTargetToAttack(string target);
+	void ShowStats();
 
 private:
 
