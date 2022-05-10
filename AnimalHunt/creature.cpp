@@ -22,60 +22,6 @@ void Creature::Look(const vector<string>& args) const {
 	else cout << name << "'s corpse" << endl;
 }
 
-//bool Creature::Go(const vector<string>& args) {
-	//if (!IsAlive()) return false;
-
-	//Exit* exit = GetRoom()->GetExit(args[1]);
-
-	//if (exit == NULL)
-	//	return false;
-
-	//if (PlayerInRoom())
-	//	cout << name << "goes " << args[1] << "..." << endl;
-
-	//ChangeParentTo(exit->GetDestinationFrom((Room*)parent));
-
-	//return true;
-//}
-
-//bool Creature::Take(const vector<string>& args)
-//{
-	//if (!IsAlive())
-	//	return false;
-
-	//Item* item = (Item*)parent->Find(args[1], ITEM);
-
-	//if (args.size() > 1)
-	//{
-	//	// we could pick something from a container in our inventory ...
-	//	if (item == NULL)
-	//		item = (Item*)Find(args[1], ITEM);
-
-	//	if (item == NULL)
-	//		return false;
-
-	//	Item* subitem = (Item*)item->Find(args[3], ITEM);
-
-	//	if (subitem == NULL)
-	//		return false;
-
-	//	if (PlayerInRoom())
-	//		cout << name << " looks into " << item->name << "...\n";
-
-	//	item = subitem;
-	//}
-
-	//if (item == NULL)
-	//	return false;
-
-	//if (PlayerInRoom())
-	//	cout << name << " takes " << item->name << ".\n";
-
-	//item->ChangeParentTo(this);
-
-	//return true;
-//}
-
 void Creature::Inventory() const {
 	list<Entity*> items;
 	FindAll(ITEM, items);
@@ -94,58 +40,6 @@ void Creature::Inventory() const {
 		cout << endl;
 	}
 }
-
-//bool Creature::Equip(const vector<string>& args) {
-	/*if (!IsAlive())
-		return false;
-
-	Item* item = (Item*)Find(args[1], ITEM);
-
-	if (item == NULL)
-		return false;
-
-	switch (item->type)
-	{
-	case WEAPON:
-		weapon = item;
-		break;
-
-	case ARMOUR:
-		armour = item;
-		break;
-
-	default:
-		return false;
-	}
-
-	if (PlayerInRoom())
-		cout << name << " equips " << item->name << "...\n";
-
-	return true;*/
-//}
-
-//bool Creature::UnEquip(const vector<string>& args) {
-	/*if (!IsAlive())
-		return false;
-
-	Item* item = (Item*)Find(args[1], ITEM);
-
-	if (item == NULL)
-		return false;
-
-	if (item == weapon)
-		weapon = NULL;
-	else if (item == weapon)
-		armour = NULL;
-	else
-		return false;
-
-	if (PlayerInRoom())
-		cout << name << " un-equips " << item->name << "...\n";
-
-	return true;*/
-//}
-
 
 bool Creature::AutoEquip() {
 	if (!IsAlive()) return false;
@@ -193,7 +87,7 @@ int Creature::MakeAttack() {
 
 	int result = (weapon) ? rand() % 10 + weapon->GetValue() : rand() % 5;
 
-	if (PlayerInRoom() && result > 0) cout << name << " ("<<hit_points << " HP) attacks " << combat_target->name << " for " << result << endl;
+	if (PlayerInRoom() && result > 0) cout << name << " (" << hit_points << " HP) attacks " << combat_target->name << " for " << result << endl;
 
 	combat_target->ReceiveAttack(result);
 

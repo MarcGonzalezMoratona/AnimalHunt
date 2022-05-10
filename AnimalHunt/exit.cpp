@@ -3,7 +3,7 @@
 #include "Exit.h"
 
 Exit::Exit(const char* name, const char* opposite_name, const char* description, Room* origin, Room* destination) :
-	Entity(name, description, (Entity*)origin), one_way(one_way), destination(destination), opposite_name(opposite_name) {
+	Entity(name, description, (Entity*)origin), destination(destination), opposite_name(opposite_name) {
 	type = EXIT;
 	destination->container.push_back(this);
 }

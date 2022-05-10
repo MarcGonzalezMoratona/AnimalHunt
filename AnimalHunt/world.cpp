@@ -57,7 +57,7 @@ World::World(string playerName) {
 	knife->max_value = 6;
 
 	Item* chest = new Item("chest", "This chest might contain an awesome treasure.", fountain);
-	Item* sword = new Item("sword", "A simple old and rusty sword.", chest, WEAPON);
+	Item* sword = new Item("sword", "A simple, old and rusty sword.", chest, WEAPON);
 
 	entities.push_back(knife);
 	entities.push_back(chest);
@@ -119,6 +119,15 @@ bool World::PlayerIsAlive() {
 	return player->IsAlive();
 }
 
+
+void World::SendItemToEquip(string item) {
+	player->Equip(item);
+}
+
+void World::SendItemToUnequip(string item) {
+	player->Unequip(item);
+}
+
 bool World::SendItemToDrop(string item, string subitem) {
 	return player->Drop(item, subitem);
 }
@@ -133,5 +142,4 @@ void World::SendPlaceToLook(string placeToLook) {
 
 void World::SendTargetToAttack(string target) {
 	player->Attack(target);
-	//for (list<Entity*>::iterator it = entities.begin(); it != entities.end(); ++it) (*it)->Attack();
 }

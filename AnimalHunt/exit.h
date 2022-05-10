@@ -18,7 +18,6 @@ public:
 	Room* GetDestinationFrom(const Room* room) const;
 
 public:
-	bool one_way;
 	string opposite_name;
 	Room* destination;
 };

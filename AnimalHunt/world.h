@@ -17,6 +17,8 @@ public:
 	~World();
 
 	void SendDirection(string command);
+	void SendItemToEquip(string item);
+	void SendItemToUnequip(string item);
 	bool SendItemToTake(string item, string subitem);
 	bool SendItemToDrop(string item, string subitem);
 	void SendExaminationTarget(string targetName);

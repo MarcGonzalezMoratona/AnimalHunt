@@ -98,8 +98,8 @@ bool Player::Drop(const string itemName, const string subitemName) {
 		// we could pick something from a container in our inventory ...
 		if (item == NULL) item = (Item*)Find(subitemName, ITEM);
 		if (item == NULL) return false;
-		Unequip(item->name);
 		cout << endl << "You drop " << item->name << "..." << endl;
+		Unequip(item->name);
 		item->ChangeParentTo(parent);
 		return true;
 	}

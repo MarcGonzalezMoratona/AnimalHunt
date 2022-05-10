@@ -19,6 +19,8 @@ int main() {
 	cout << "\t look (place) - Look into a place to know which items or creatures are there" << endl;
 	cout << "\t attack (target) - Attack an animal in order to hunt it" << endl;
 	cout << "\t stats - Shows the player stats (HP, attack and Protection)" << endl;
+	cout << "\t equip - Lets you equip a weapon or another object from your inventory" << endl;
+	cout << "\t unequip - Lets you unequip a weapon or another object" << endl;
 	cout << "\t examine (target) - Shows stats and objects that belong to an animal" << endl;
 	cout << "\t loot (target) - Takes all the objects that belong to an animal" << endl;
 	cout << "\t inventory - Shows all the objects that belong to you" << endl;
@@ -26,7 +28,6 @@ int main() {
 
 	cout << "\t There are 8 possible directions:" << endl;
 	cout << "\t north (n), south (s), east (e), west (w), north-east (ne), north-west (nw), south-east (se), south-west (sw)" << endl << endl;
-
 
 	cout << "Enter your name:" << endl;
 	string name;
@@ -62,6 +63,8 @@ int main() {
 			cout << "\t look (place) - Look into a place to know which items or creatures are there" << endl;
 			cout << "\t attack (target) - Attack an animal in order to hunt it" << endl;
 			cout << "\t stats - Shows the player stats (HP, attack and Protection)" << endl;
+			cout << "\t equip - Lets you equip a weapon or another object from your inventory" << endl;
+			cout << "\t unequip - Lets you unequip a weapon or another object" << endl;
 			cout << "\t examine (target) - Shows stats and objects that belong to an animal" << endl;
 			cout << "\t loot (target) - Takes all the objects that belong to an animal" << endl;
 			cout << "\t inventory - Shows all the objects that belong to you" << endl;
@@ -95,6 +98,16 @@ int main() {
 		}
 		else if (command == "stats") {
 			world.ShowStats();
+		}
+		else if (command == "equip") {
+			string item;
+			cin >> item;
+			world.SendItemToEquip(item);
+		}
+		else if (command == "unequip") {
+			string item;
+			cin >> item;
+			world.SendItemToUnequip(item);
 		}
 		else if (command == "examine") {
 			string target;

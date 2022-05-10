@@ -16,8 +16,8 @@ public:
 	bool Take(const string item, const string subitem);
 	bool Drop(const string item, const string subitem);
 	void Inventory() const;
-	//bool Equip(const vector<string>& args);
-	//bool UnEquip(const vector<string>& args);
+	bool Equip(const string itemName);
+	bool Unequip(const string itemName);
 	bool Examine(const string targetName) const;
 	bool Attack(const string targetName);
 	bool Loot(const string targetName);
