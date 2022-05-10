@@ -12,9 +12,9 @@ public:
 	~Player();
 
 	bool Go(const string direction);
-	//void Look(const vector<string>& args) const;
-	//bool Take(const vector<string>& args);
-	//bool Drop(const vector<string>& args);
+	void Look(const string item) const;
+	bool Take(const string item, const string subitem);
+	bool Drop(const string item);
 	//void Inventory() const;
 	//bool Equip(const vector<string>& args);
 	//bool UnEquip(const vector<string>& args);

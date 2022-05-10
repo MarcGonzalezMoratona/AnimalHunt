@@ -23,7 +23,6 @@ World::World() {
 	Exit* ex5 = new Exit("north", "south", "Little path", forest, mountain);
 	Exit* ex6 = new Exit("south", "north", "Little path", forest, fountain);
 
-
 	entities.push_back(forest);
 	entities.push_back(house);
 	entities.push_back(store);
@@ -46,10 +45,10 @@ World::World() {
 	//entities.push_back(butler);
 
 	// Items -----
-	//Item* mailbox = new Item("Mailbox", "Looks like it might contain something.", house);
+	Item* knife = new Item("knife", "A knife.", house, WEAPON);
+	knife->min_value = 2;
+	knife->max_value = 6;
 	//Item* sword = new Item("Sword", "A simple old and rusty sword.", forest, WEAPON);
-	//sword->min_value = 2;
-	//sword->max_value = 6;
 
 	//Item* sword2(sword);
 	//sword2->parent = butler;
@@ -59,7 +58,7 @@ World::World() {
 	//shield->max_value = 3;
 	//butler->AutoEquip();
 
-	//entities.push_back(mailbox);
+	entities.push_back(knife);
 	//entities.push_back(sword);
 	//entities.push_back(shield);
 
@@ -69,8 +68,7 @@ World::World() {
 
 }
 
-World::~World()
-{
+World::~World() {
 	for (list<Entity*>::iterator it = entities.begin(); it != entities.end(); ++it)
 		delete *it;
 
@@ -86,142 +84,17 @@ void World::sendDirection(string direction) {
 	else if (direction == "nw") direction = "north-west";
 	else if (direction == "se") direction = "south-east";
 	else if (direction == "sw") direction = "south-west";
-
 	player->Go(direction);
 }
 
-//bool World::Tick(vector<string>& args)
-//{
-//	bool ret = true;
-//
-//	if (args.size() > 0 && args[0].length() > 0)
-//		ret = ParseCommand(args);
-//
-//	GameLoop();
-//
-//	return ret;
-//}
+void World::sendItemToTake(string item, string subitem) {
+	player->Take(item, subitem);
+}
 
-//void World::GameLoop()
-//{
-//	clock_t now = clock();
-//
-//	if ((now - tick_timer) / CLOCKS_PER_SEC > TICK_FREQUENCY)
-//	{
-//		for (list<Entity*>::iterator it = entities.begin(); it != entities.end(); ++it)
-//			(*it)->Tick();
-//
-//		tick_timer = now;
-//	}
-//}
-//
-//bool World::ParseCommand(vector<string>& args)
-//{
-//	bool ret = true;
-//
-//	switch (args.size())
-//	{
-//	case 1: // commands with no arguments ------------------------------
-//	{
-//		if (Same(args[0], "look") || Same(args[0], "l"))
-//		{
-//			player->Look(args);
-//		}
-//		else if (Same(args[0], "north") || Same(args[0], "n"))
-//		{
-//			(args.size() == 1) ? args.push_back("north") : args[1] = "north";
-//			player->Go(args);
-//		}
-//		else if (Same(args[0], "south") || Same(args[0], "s"))
-//		{
-//			(args.size() == 1) ? args.push_back("south") : args[1] = "south";
-//			player->Go(args);
-//		}
-//		else if (Same(args[0], "east") || Same(args[0], "e"))
-//		{
-//			(args.size() == 1) ? args.push_back("east") : args[1] = "east";
-//			player->Go(args);
-//		}
-//		else if (Same(args[0], "west") || Same(args[0], "w"))
-//		{
-//			(args.size() == 1) ? args.push_back("west") : args[1] = "west";
-//			player->Go(args);
-//		}
-//		else if (Same(args[0], "stats") || Same(args[0], "st"))
-//		{
-//			player->Stats();
-//		}
-//		else if (Same(args[0], "inventory") || Same(args[0], "i"))
-//		{
-//			player->Inventory();
-//		}
-//		else
-//			ret = false;
-//		break;
-//	}
-//	case 2: // commands with one argument ------------------------------
-//	{
-//		if (Same(args[0], "look") || Same(args[0], "l"))
-//		{
-//			player->Look(args);
-//		}
-//		else if (Same(args[0], "go"))
-//		{
-//			player->Go(args);
-//		}
-//		else if (Same(args[0], "take") || Same(args[0], "pick"))
-//		{
-//			player->Take(args);
-//		}
-//		else if (Same(args[0], "drop") || Same(args[0], "put"))
-//		{
-//			player->Drop(args);
-//		}
-//		else if (Same(args[0], "equip") || Same(args[0], "eq"))
-//		{
-//			player->Equip(args);
-//		}
-//		else if (Same(args[0], "unequip") || Same(args[0], "uneq"))
-//		{
-//			player->UnEquip(args);
-//		}
-//		else if (Same(args[0], "examine") || Same(args[0], "ex"))
-//		{
-//			player->Examine(args);
-//		}
-//		else if (Same(args[0], "attack") || Same(args[0], "at"))
-//		{
-//			player->Attack(args);
-//		}
-//		else if (Same(args[0], "loot") || Same(args[0], "lt"))
-//		{
-//			player->Loot(args);
-//		}
-//		else
-//			ret = false;
-//		break;
-//	}
-//	case 3: // commands with two arguments ------------------------------
-//	{
-//		break;
-//	}
-//	case 4: // commands with three arguments ------------------------------
-//	{
-//		if (Same(args[0], "take") || Same(args[0], "pick"))
-//		{
-//			player->Take(args);
-//		}
-//		else if (Same(args[0], "drop") || Same(args[0], "put"))
-//		{
-//			player->Drop(args);
-//		}
-//		else
-//			ret = false;
-//		break;
-//	}
-//	default:
-//		ret = false;
-//	}
-//
-//	return ret;
-//}
+void World::sendItemToDrop(string item) {
+	//player->Drop(item);
+}
+
+void World::sendPlaceToLook(string placeToLook) {
+	player->Look(placeToLook);
+}

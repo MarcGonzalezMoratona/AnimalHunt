@@ -23,13 +23,12 @@ public:
 	virtual ~Entity();
 
 	virtual void Look() const;
-	//virtual void Tick();
 
 	void ChangeParentTo(Entity* new_parent);
-	//bool Find(Entity* entity) const;
-	//Entity* Find(EntityType type) const;
-	//Entity* Find(const string& name, EntityType type) const;
-	//void	FindAll(EntityType type, list<Entity*>& list_to_fill) const;
+	bool Find(Entity* entity) const;
+	Entity* Find(EntityType type) const;
+	Entity* Find(const string& name, EntityType type) const;
+	void FindAll(EntityType type, list<Entity*>& list_to_fill) const;
 
 public:
 	EntityType type;

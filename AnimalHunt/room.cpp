@@ -16,35 +16,30 @@ void Room::Look() const {
 	cout << description;
 
 	// List exits --
-	for (list<Entity*>::const_iterator it = container.begin(); it != container.cend(); ++it)
-	{
-		if ((*it)->type == EXIT)
-		{
+	for (list<Entity*>::const_iterator it = container.begin(); it != container.cend(); ++it) {
+		if ((*it)->type == EXIT) {
 			Exit* ex = (Exit*)*it;
-			cout << endl << "Direction (" << ex->GetNameFrom(this) << ") you see " << ex->GetDestinationFrom(this)->name;
+			cout << endl << "Direction (" << ex->GetNameFrom(this) << ") you see " << ex->GetDestinationFrom(this)->name << endl;
 		}
 	}
 
 	// List items --
 	for (list<Entity*>::const_iterator it = container.begin(); it != container.cend(); ++it) {
-		if ((*it)->type == ITEM)
-		{
+		if ((*it)->type == ITEM) {
 			Item* item = (Item*)*it;
-			cout << endl << "There is an item here: " << item->name;
+			cout << endl << "There is an item here: " << item->name << endl;
 		}
 	}
 
 	// List creatures --
 	for (list<Entity*>::const_iterator it = container.begin(); it != container.cend(); ++it) {
-		if ((*it)->type == CREATURE)
-		{
+		if ((*it)->type == CREATURE) {
 			Creature* cr = (Creature*)*it;
 			cout << endl << "There is someone else here: " << cr->name;
-			if (cr->IsAlive() == false)
-				cout << " (dead)";
+			if (cr->IsAlive() == false) cout << " (dead)";
+			cout << endl;
 		}
 	}
-
 	cout << endl;
 }
 
@@ -56,6 +51,5 @@ Exit* Room::GetExit(const string& direction) const
 			if (ex->GetNameFrom(this) == direction) return ex;
 		}
 	}
-
 	return NULL;
 }

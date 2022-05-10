@@ -21,7 +21,7 @@ public:
 	Item(const char* name, const char* description, Entity* parent, ItemType item_type = COMMON);
 	~Item();
 
-	//void Look() const;
+	void Look() const;
 	//int GetValue() const;
 
 public:

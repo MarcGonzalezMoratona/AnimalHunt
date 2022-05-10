@@ -4,39 +4,28 @@
 #include "item.h"
 #include "player.h"
 
-Player::Player(const char* title, const char* description, Room* room) :
-	Creature(title, description, room)
-{
+Player::Player(const char* title, const char* description, Room* room) : Creature(title, description, room) {
 	type = PLAYER;
 }
 
-Player::~Player()
-{
-}
+Player::~Player() {}
 
-//void Player::Look(const vector<string>& args) const {
-//	if (args.size() > 1)
-//	{
-//		for (list<Entity*>::const_iterator it = parent->container.begin(); it != parent->container.cend(); ++it)
-//		{
-//			if (Same((*it)->name, args[1]) || ((*it)->type == EXIT && Same(args[1], ((Exit*)(*it))->GetNameFrom((Room*)parent))))
-//			{
-//				(*it)->Look();
-//				return;
-//			}
-//		}
-//
-//		if (Same(args[1], "me"))
-//		{
-//			cout << "\n" << name << "\n";
-//			cout << description << "\n";
-//		}
-//	}
-//	else
-//	{
-//		parent->Look();
-//	}
-//}
+void Player::Look(const string placeToLook) const {
+	if (placeToLook == "here") parent->Look();
+	else if (placeToLook == "me") {
+		cout << endl << name << endl;
+		cout << description << endl << endl;
+	}
+	else {
+		for (list<Entity*>::const_iterator it = parent->container.begin(); it != parent->container.cend(); ++it) {
+			if ((*it)->name == placeToLook || ((*it)->type == EXIT && placeToLook == ((Exit*)(*it))->GetNameFrom((Room*)parent))) {
+				(*it)->Look();
+				return;
+			}
+		}
+		cout << "Sorry, I don't see what you are looking for" << endl;
+	}
+}
 
 bool Player::Go(string direction) {
 	Exit* exit = GetRoom()->GetExit(direction);
@@ -54,51 +43,44 @@ bool Player::Go(string direction) {
 }
 
 
-//bool Player::Take(const vector<string>& args) {
-//	if (args.size() == 4)
-//	{
-//		Item* item = (Item*)parent->Find(args[3], ITEM);
-//
-//		// we could pick something from a container in our inventory ...
-//		if (item == NULL)
-//			item = (Item*)Find(args[3], ITEM);
-//
-//		if (item == NULL)
-//		{
-//			cout << endl << "Cannot find '" << args[3] << "' in this room or in your inventory.\n";
-//			return false;
-//		}
-//
-//		Item* subitem = (Item*)item->Find(args[1], ITEM);
-//
-//		if (subitem == NULL)
-//		{
-//			cout << endl << item->name << " does not contain '" << args[1] << "'." << endl;
-//			return false;
-//		}
-//
-//		cout << endl << "You take " << subitem->name << " from " << item->name << "." << endl;
-//		subitem->ChangeParentTo(this);
-//	}
-//	else if (args.size() == 2)
-//	{
-//		Item* item = (Item*)parent->Find(args[1], ITEM);
-//
-//		if (item == NULL)
-//		{
-//			cout << endl << "There is no item here with that name." << endl;
-//			return false;
-//		}
-//
-//		cout << endl << "You take " << item->name << "." << endl;
-//		item->ChangeParentTo(this);
-//	}
-//
-//	return false;
-//}
+bool Player::Take(string itemName, string subitemName) {
+	if (itemName != "") {
+		Item* item = (Item*)parent->Find(itemName, ITEM);
 
-//void Player::Inventory() const
-//{
+		// we could pick something from a container in our inventory ...
+		if (item == NULL) item = (Item*)Find(itemName, ITEM);
+
+		if (item == NULL) {
+			cout << endl << "Cannot find '" << itemName << "' in this room or in your inventory." << endl;
+			return false;
+		}
+
+		Item* subitem = (Item*)item->Find(subitemName, ITEM);
+
+		if (subitem == NULL) {
+			cout << endl << item->name << " does not contain '" << subitemName << "'." << endl;
+			return false;
+		}
+
+		cout << endl << "You take " << subitem->name << " from " << item->name << "." << endl;
+		subitem->ChangeParentTo(this);
+	}
+	else {
+		Item* item = (Item*)parent->Find(subitemName, ITEM);
+
+		if (item == NULL) {
+			cout << endl << "There is no item here with that name." << endl;
+			return false;
+		}
+
+		cout << endl << "You take " << item->name << "." << endl;
+		item->ChangeParentTo(this);
+	}
+
+	return false;
+}
+
+//void Player::Inventory() const {
 //	list<Entity*> items;
 //	FindAll(ITEM, items);
 //
@@ -117,17 +99,14 @@ bool Player::Go(string direction) {
 //		else
 //			cout << endl << (*it)->name;
 //	}
-//
 //	cout << "\n";
 //}
 
 //bool Player::Drop(const vector<string>& args) {
-//	if (args.size() == 2)
-//	{
+//	if (args.size() == 2) {
 //		Item* item = (Item*)Find(args[1], ITEM);
 //
-//		if (item == NULL)
-//		{
+//		if (item == NULL) {
 //			cout << endl << "There is no item on you with that name." << endl;
 //			return false;
 //		}
@@ -137,22 +116,19 @@ bool Player::Go(string direction) {
 //
 //		return true;
 //	}
-//	else if (args.size() == 4)
-//	{
+//	else if (args.size() == 4) {
 //		Item* item = (Item*)Find(args[1], ITEM);
 //
-//		if (item == NULL)
-//		{
-//			cout << endl << "Can not find '" << args[1] << "' in your inventory." << endl;
+//		if (item == NULL) {
+//			cout << endl << "Cannot find '" << args[1] << "' in your inventory." << endl;
 //			return false;
 //		}
 //
 //		Item* container = (Item*)parent->Find(args[3], ITEM);
 //
-//		if (container == NULL)
-//		{
-//			container = (Item*)Find(args[3], ITEM);
-//			cout << endl <<"Can not find '" << args[3] << "' in your inventory or in the room." << endl;
+//		if (container == NULL) {
+//		container = (Item*)Find(args[3], ITEM);
+//			cout << endl <<"Cannot find '" << args[3] << "' in your inventory or in the room." << endl;
 //			return false;
 //		}
 //
@@ -161,21 +137,18 @@ bool Player::Go(string direction) {
 //
 //		return true;
 //	}
-//
 //	return false;
 //}
 
 //bool Player::Equip(const vector<string>& args) {
 //	Item* item = (Item*)Find(args[1], ITEM);
 //
-//	if (item == NULL)
-//	{
+//	if (item == NULL) {
 //		cout << endl << "Cannot find '" << args[1] << "' is not in your inventory." << endl;
 //		return false;
 //	}
 //
-//	switch (item->item_type)
-//	{
+//	switch (item->item_type) {
 //	case WEAPON:
 //		weapon = item;
 //		break;
@@ -190,42 +163,33 @@ bool Player::Go(string direction) {
 //	}
 //
 //	cout << endl << "You equip " << item->name << "..." << endl;
-//
 //	return true;
 //}
 
 //bool Player::UnEquip(const vector<string>& args) {
-//	if (!IsAlive())
-//		return false;
+//	if (!IsAlive()) return false;
 //
 //	Item* item = (Item*)Find(args[1], ITEM);
 //
-//	if (item == NULL)
-//	{
+//	if (item == NULL) {
 //		cout << endl << item->name << " is not in your inventory." << endl;
 //		return false;
 //	}
 //
-//	if (item == weapon)
-//		weapon = NULL;
-//	else if (item == armour)
-//		armour = NULL;
-//	else
-//	{
+//	if (item == weapon) weapon = NULL;
+//	else if (item == armour) armour = NULL;
+//	else {
 //		cout << endl << item->name << " is not equipped." << endl;
 //		return false;
 //	}
-//
 //	cout  << endl << "You unequip " << item->name << "..." << endl;
-//
 //	return true;
 //}
 
 //bool Player::Examine(const vector<string>& args) const {
 //	Creature *target = (Creature*)parent->Find(args[1], CREATURE);
 //
-//	if (target == NULL)
-//	{
+//	if (target == NULL) {
 //		cout << endl << args[1] << " is not here." << endl;
 //		return false;
 //	}
@@ -239,8 +203,7 @@ bool Player::Go(string direction) {
 //bool Player::Attack(const vector<string>& args) {
 //	Creature *target = (Creature*)parent->Find(args[1], CREATURE);
 //
-//	if (target == NULL)
-//	{
+//	if (target == NULL) {
 //		cout  << endl << args[1] << " is not here.";
 //		return false;
 //	}
@@ -253,14 +216,12 @@ bool Player::Go(string direction) {
 //bool Player::Loot(const vector<string>& args) {
 //	Creature *target = (Creature*)parent->Find(args[1], CREATURE);
 //
-//	if (target == NULL)
-//	{
+//	if (target == NULL) {
 //		cout  << endl << args[1] << " is not here." << endl;
 //		return false;
 //	}
 //
-//	if (target->IsAlive() == true)
-//	{
+//	if (target->IsAlive() == true) {
 //		cout << endl << target->name << " cannot be looted until it is killed." << endl;
 //		return false;
 //	}
@@ -268,8 +229,7 @@ bool Player::Go(string direction) {
 //	list<Entity*> items;
 //	target->FindAll(ITEM, items);
 //
-//	if (items.size() > 0)
-//	{
+//	if (items.size() > 0) {
 //		cout  << endl<< "You loot " << target->name << "'s corpse:" << endl;
 //
 //		for (list<Entity*>::const_iterator it = items.begin(); it != items.cend(); ++it)
@@ -279,8 +239,6 @@ bool Player::Go(string direction) {
 //			i->ChangeParentTo(this);
 //		}
 //	}
-//	else
-//		cout  << endl<< "You loot " << target->name << "'s corpse, but find nothing there." << endl;
-//
+//	else cout  << endl << "You loot " << target->name << "'s corpse, but find nothing there." << endl;
 //	return true;
 //}
