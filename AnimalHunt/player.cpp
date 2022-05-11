@@ -42,7 +42,7 @@ bool Player::PayDebt() {
 		Item* fur = (Item*)Find("fur", ITEM);
 		Item* skin = (Item*)Find("skin", ITEM);
 		Item* feathers = (Item*)Find("feathers", ITEM);
-		if (fur != NULL & skin != NULL && feathers != NULL) return true;
+		if (fur != NULL && skin != NULL && feathers != NULL) return true;
 		cout << "You do not have all the items to pay the debt" << endl;
 		return false;
 	}
