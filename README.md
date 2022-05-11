@@ -34,6 +34,18 @@ There are some commands that you will need to know in order to play the game:
 - Having a wallet that you can open to know how much money you have.
 - Having a church where you can pray and donate money to be more lucky (reduced prices in the store, more attack points and better weapons on the map).
 
+## Guide to win
+The easiest way to win is going to the fountain, taking the sword inside the chest and equiping it.
+Then, kill and loot the bear, the eagle and the snake.
+Finally, go to the bank and pay the debt.
+
+## Comments
+The most difficult part of the development has been my time availability. I have had a couple of days to develop it because the rest of the week I had to work and develop other projects for my bachelor's degree. I wanted to deliver a bigger project but I did not have time enough to achieve it.
+
+I felt comfortable with the language because I have previous experience, although I needed some time to understand how the example code works. I had to remember how iterators work, because the last time I used them was a long time ago. The relationships between the classes in this project seem coherent to me, and having an UML schema helps a lot. I have decided NOT to use the tick function to update the game using a clock because I think that the game does not need it. I also got rid of the global functions.
+
+I think that the most difficult part to understand were the different Find methods. Dropping and picking elements that are inside other elements has been challenging to develop. 
+
 ## Author
 Marc González Moratona
 
